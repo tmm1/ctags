@@ -34,6 +34,8 @@
 #include "routines.h"
 #include "xtag.h"
 #include "routines.h"
+#include "error.h"
+#include "interactive.h"
 
 /*
 *   MACROS
@@ -273,6 +275,10 @@ static optionDescription LongOptionDescription [] = {
  {1,"       Print this option summary."},
  {1,"  --if0=[yes|no]"},
  {1,"       Should code within #if 0 conditional branches be parsed [no]?"},
+#ifdef HAVE_JANSSON
+ {1,"  --interactive"},
+ {1,"       Enter interactive mode (json over stdio)."},
+#endif
 #ifdef HAVE_ICONV
  {1,"  --input-encoding=encoding"},
  {1,"      Specify encoding of all input files."},
@@ -470,6 +476,7 @@ static const char *const Features [] = {
 #endif
 #ifdef HAVE_JANSSON
 	"json",
+	"interactive",
 #endif
 	NULL
 };
@@ -1394,6 +1401,17 @@ static void processHelpOption (
 	putchar ('\n');
 	printOptionDescriptions (LongOptionDescription);
 	exit (0);
+}
+
+static void processInteractiveOption (
+		const char *const option __unused__,
+		const char *const parameter __unused__)
+{
+	Option.interactive = TRUE;
+	setMainLoop (interactiveLoop, NULL);
+	setErrorPrinter (jsonErrorPrinter, NULL);
+	setTagWriter (writeJsonEntry, NULL, NULL, writeJsonPtagEntry, TRUE);
+	enablePtag (PTAG_JSON_OUTPUT_VERSION, TRUE);
 }
 
 static void processLanguageForceOption (
@@ -2415,6 +2433,9 @@ static parametricOption ParametricOptions [] = {
 	{ "filter-terminator",      processFilterTerminatorOption,  TRUE,   STAGE_ANY },
 	{ "format",                 processFormatOption,            TRUE,   STAGE_ANY },
 	{ "help",                   processHelpOption,              TRUE,   STAGE_ANY },
+#ifdef HAVE_JANSSON
+	{ "interactive",            processInteractiveOption,       TRUE,   STAGE_ANY },
+#endif
 #ifdef HAVE_ICONV
 	{ "input-encoding",         processInputEncodingOption,     FALSE,  STAGE_ANY },
 	{ "output-encoding",        processOutputEncodingOption,    FALSE,  STAGE_ANY },

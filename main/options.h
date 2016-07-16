@@ -104,6 +104,9 @@ typedef struct sOptionValues {
 	long debugLevel;        /* -D  debugging output */
 	unsigned long breakLine;/* -b  input line at which to call lineBreak() */
 #endif
+#ifdef HAVE_JANSSON
+	boolean interactive; /* --interactive */
+#endif
 } optionValues;
 
 typedef enum eOptionLoadingStage {
