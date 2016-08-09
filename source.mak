@@ -20,6 +20,7 @@ MAIN_HEADS =			\
 	main/field.h		\
 	main/flags.h		\
 	main/fmt.h		\
+	main/gcc-attr.h		\
 	main/general.h		\
 	main/htable.h		\
 	main/keyword.h		\
@@ -27,6 +28,7 @@ MAIN_HEADS =			\
 	main/lcpp.h		\
 	main/main.h		\
 	main/mbcs.h		\
+	main/mybool.h		\
 	main/nestlevel.h	\
 	main/options.h		\
 	main/output.h		\
@@ -97,13 +99,18 @@ PARSER_HEADS = \
 	parsers/cxx/cxx_scope.h \
 	parsers/cxx/cxx_tag.h \
 	parsers/cxx/cxx_token.h \
-	parsers/cxx/cxx_token_chain.h
+	parsers/cxx/cxx_token_chain.h \
+	\
+	parsers/make.h \
+	\
+	$(NULL)
 	
 PARSER_SRCS =				\
 	parsers/ada.c			\
 	parsers/ant.c			\
 	parsers/asm.c			\
 	parsers/asp.c			\
+	parsers/automake.c		\
 	parsers/awk.c			\
 	parsers/basic.c			\
 	parsers/beta.c			\
@@ -152,6 +159,7 @@ PARSER_SRCS =				\
 	parsers/perl.c			\
 	parsers/perl6.c			\
 	parsers/php.c			\
+	parsers/protobuf.c		\
 	parsers/python.c		\
 	parsers/r.c			\
 	parsers/rexx.c			\

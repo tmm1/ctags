@@ -1,4 +1,4 @@
-indexing
+note
 
 	description: "[
 		This is a verbatim string.
@@ -8,13 +8,13 @@ class VERBATIM
 
 feature -- Sample
 
-	constant: STRING is "[
+	constant: STRING = "[
 			Vertbatim constant
 			]"
 
 feature {NONE} -- Implementation
 
-	cpp_query (obj: FX_OBJECT; app: POINTER): POINTER is
+	cpp_query (obj: FX_OBJECT; app: POINTER): POINTER
 			-- Header comment
 		external "[
 			C++ [ClassName %"EFXVisual.h%"]
@@ -24,7 +24,7 @@ feature {NONE} -- Implementation
 
 	tail_attribute: INTEGER
 
-indexing
+note
 
 	library: "[
 			EiffelBase: Library of reusable components for Eiffel.

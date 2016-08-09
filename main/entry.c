@@ -1092,6 +1092,11 @@ static void writeTagEntry (const tagEntryInfo *const tag)
 
 	if (tag->placeholder)
 		return;
+	if (! tag->kind->enabled)
+		return;
+	if (tag->extensionFields.roleIndex != ROLE_INDEX_DEFINITION
+	    && ! isXtagEnabled (XTAG_REFERENCE_TAGS))
+		return;
 
 	DebugStatement ( debugEntry (tag); )
 	Assert (writeEntry);

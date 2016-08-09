@@ -1,4 +1,4 @@
-indexing
+note
 
 	description: "Try everything"
 
@@ -27,7 +27,7 @@ inherit
 			all
 		end
 
-creation
+create
 
 	make, make2
 
@@ -37,21 +37,21 @@ create {SOMETHING}
 
 feature -- Initialization
 
-	make is
+	make
 		do
 		end
 
-	make2 is
+	make2
 		do
 		end
 
-	make3 is
+	make3
 		do
 		end
 
 feature {ANY, NONE} -- Feature clause comment
 
-	procedure_full is
+	procedure_full
 		require else
 		local
 		do
@@ -63,9 +63,9 @@ feature {ANY, NONE} -- Feature clause comment
 
 invariant
 
-	invariant: condition
+	label: condition
 
-indexing
+note
 
 	license: "May not be used for any purpose"
 
