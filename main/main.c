@@ -492,6 +492,7 @@ static void batchMakeTags (cookedArgs *args, void *user __unused__)
 }
 
 #ifdef HAVE_JANSSON
+extern void flushTagFile (void);
 void interactiveLoop (cookedArgs *args, void *user __unused__)
 {
   char buffer[1024];
@@ -537,8 +538,8 @@ void interactiveLoop (cookedArgs *args, void *user __unused__)
         parseFileWithMio (filename, mio);
       }
 
+      flushTagFile ();
       fprintf (stdout, "{\"completed\": \"generate-tags\"}\n");
-      fflush (stdout);
     } else {
       error (FATAL, "unknown command name");
       goto next;

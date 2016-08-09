@@ -592,6 +592,14 @@ static void writeEtagsIncludes (MIO *const fp)
 	}
 }
 
+extern void flushTagFile (void)
+{
+  mio_flush (TagFile.fp);
+  abort_if_ferror (TagFile.fp);
+  sortTagFile ();
+  remove (tagFileName ());
+}
+
 extern void closeTagFile (const boolean resize)
 {
 	long desiredSize, size;
