@@ -531,7 +531,7 @@ void interactiveLoop (cookedArgs *args, void *user __unused__)
       if (size == -1) { /* read from disk */
         createTagsForEntry (filename);
       } else {			/* read nbytes from stream */
-        uint8_t *data = eMalloc (size);
+        unsigned char *data = eMalloc (size);
         size = fread (data, 1, size, stdin);
         MIO *mio = mio_new_memory (data, size, eRealloc, eFree);
         parseFileWithMio (filename, mio);
