@@ -78,6 +78,7 @@
 
 #ifdef HAVE_JANSSON
 #include "interactive.h"
+#include "seccomp.h"
 #include <jansson.h>
 #include <errno.h>
 #endif
@@ -501,7 +502,7 @@ void interactiveLoop (cookedArgs *args, void *user __unused__)
   openTagFile ();
   //fprintf (stdout, "{\"name\": \"" PROGRAM_NAME "\", \"version\": \"" PROGRAM_VERSION "\"}\n");
   //fflush (stdout);
-
+  install_syscall_filter();
   while (fgets (buffer, sizeof(buffer), stdin)) {
     if (buffer[0] == '\n')
       continue;
@@ -524,7 +525,7 @@ void interactiveLoop (cookedArgs *args, void *user __unused__)
       json_int_t size = -1;
       const char *filename;
 
-      if (json_unpack (request, "{s?I ss}", "size", &size, "filename", &filename) == -1) {
+      if (json_unpack (request, "{sI ss}", "size", &size, "filename", &filename) == -1) {
         error (FATAL, "invalid generate-tags request");
         goto next;
       }

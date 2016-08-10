@@ -39,6 +39,8 @@ MAIN_HEADS =			\
 	main/ptag.h		\
 	main/read.h		\
 	main/routines.h		\
+	main/seccomp.h		\
+	main/seccomp-bpf.h	\
 	main/selectors.h	\
 	main/sort.h		\
 	main/strlist.h		\
@@ -77,6 +79,7 @@ MAIN_SRCS =				\
 	main/ptag.c			\
 	main/read.c			\
 	main/routines.c			\
+	main/seccomp.c			\
 	main/selectors.c		\
 	main/sort.c			\
 	main/strlist.c			\

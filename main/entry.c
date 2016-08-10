@@ -597,7 +597,7 @@ extern void flushTagFile (void)
   mio_flush (TagFile.fp);
   abort_if_ferror (TagFile.fp);
   sortTagFile ();
-  remove (tagFileName ());
+  //remove (tagFileName ());
 }
 
 extern void closeTagFile (const boolean resize)
